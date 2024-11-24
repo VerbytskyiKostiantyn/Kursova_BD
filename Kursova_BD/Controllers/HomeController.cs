@@ -143,7 +143,7 @@ namespace Kursova_BD.Controllers
         public IActionResult DeleteItemFromOrder(int id)
         {
             var orderItem = _db.OrderItems.FirstOrDefault(i => i.Id == id);
-            var order = _db.Orders.FirstOrDefault(i => i.Id == orderItem.OrderId);
+            var order = _db.Orders.Include(i => i.Items).FirstOrDefault(i => i.Id == orderItem.OrderId);
             order.TotalOrderPrice = order.TotalOrderPrice - (orderItem.TotalPrice);
 
             _db.OrderItems.Remove(orderItem);

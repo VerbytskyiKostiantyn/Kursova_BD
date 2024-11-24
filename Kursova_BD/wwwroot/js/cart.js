@@ -55,7 +55,7 @@ function removeItem(itemId) {
 
 function placeOrder(itemId) {
     Swal.fire({
-        title: `Підтвердити замовлення?"`,
+        title: `Підтвердити замовлення?`,
         showCancelButton: true,
         confirmButtonText: "Так",
         cancelButtonText: "Скасувати",

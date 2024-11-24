@@ -4,6 +4,7 @@ using Kursova_BD.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Kursova_BD.Migrations
 {
     [DbContext(typeof(ShopDbContext))]
-    partial class ShopDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241123212414_SeedItem")]
+    partial class SeedItem
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -40,49 +43,49 @@ namespace Kursova_BD.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Categories", (string)null);
+                    b.ToTable("Categories");
 
                     b.HasData(
                         new
                         {
                             Id = 1,
-                            ImagePath = "/images/1.jpg",
+                            ImagePath = "D:\\Унік\\3 курс\\Бази даних\\Курсова\\Kursova_BD\\Kursova_BD\\wwwroot\\images\\1.img",
                             Name = "М'ясо"
                         },
                         new
                         {
                             Id = 2,
-                            ImagePath = "/images/2.jpg",
+                            ImagePath = "D:\\Унік\\3 курс\\Бази даних\\Курсова\\Kursova_BD\\Kursova_BD\\wwwroot\\images\\2.img",
                             Name = "Овочі"
                         },
                         new
                         {
                             Id = 3,
-                            ImagePath = "/images/3.jpg",
+                            ImagePath = "D:\\Унік\\3 курс\\Бази даних\\Курсова\\Kursova_BD\\Kursova_BD\\wwwroot\\images\\3.img",
                             Name = "Фрукти"
                         },
                         new
                         {
                             Id = 4,
-                            ImagePath = "/images/4.jpg",
+                            ImagePath = "D:\\Унік\\3 курс\\Бази даних\\Курсова\\Kursova_BD\\Kursova_BD\\wwwroot\\images\\4.img",
                             Name = "Риба"
                         },
                         new
                         {
                             Id = 5,
-                            ImagePath = "/images/5.jpg",
+                            ImagePath = "D:\\Унік\\3 курс\\Бази даних\\Курсова\\Kursova_BD\\Kursova_BD\\wwwroot\\images\\5.img",
                             Name = "Сири"
                         },
                         new
                         {
                             Id = 6,
-                            ImagePath = "/images/6.jpg",
+                            ImagePath = "D:\\Унік\\3 курс\\Бази даних\\Курсова\\Kursova_BD\\Kursova_BD\\wwwroot\\images\\6.img",
                             Name = "Хліб"
                         },
                         new
                         {
                             Id = 7,
-                            ImagePath = "/images/7.jpg",
+                            ImagePath = "D:\\Унік\\3 курс\\Бази даних\\Курсова\\Kursova_BD\\Kursova_BD\\wwwroot\\images\\7.img",
                             Name = "Напої"
                         });
                 });
@@ -113,14 +116,14 @@ namespace Kursova_BD.Migrations
 
                     b.HasIndex("CategoryId");
 
-                    b.ToTable("Items", (string)null);
+                    b.ToTable("Items");
 
                     b.HasData(
                         new
                         {
                             Id = 1,
                             CategoryId = 1,
-                            ImagePath = "/images/8.jpg",
+                            ImagePath = "D:\\Унік\\3 курс\\Бази даних\\Курсова\\Kursova_BD\\Kursova_BD\\wwwroot\\images\\8.img",
                             Name = "Свинина",
                             Price = 50
                         },
@@ -128,7 +131,7 @@ namespace Kursova_BD.Migrations
                         {
                             Id = 2,
                             CategoryId = 1,
-                            ImagePath = "/images/9.jpg",
+                            ImagePath = "D:\\Унік\\3 курс\\Бази даних\\Курсова\\Kursova_BD\\Kursova_BD\\wwwroot\\images\\9.img",
                             Name = "Телятина",
                             Price = 45
                         },
@@ -136,7 +139,7 @@ namespace Kursova_BD.Migrations
                         {
                             Id = 3,
                             CategoryId = 1,
-                            ImagePath = "/images/10.jpg",
+                            ImagePath = "D:\\Унік\\3 курс\\Бази даних\\Курсова\\Kursova_BD\\Kursova_BD\\wwwroot\\images\\10.img",
                             Name = "Курка",
                             Price = 35
                         },
@@ -144,7 +147,7 @@ namespace Kursova_BD.Migrations
                         {
                             Id = 4,
                             CategoryId = 1,
-                            ImagePath = "/images/11.jpg",
+                            ImagePath = "D:\\Унік\\3 курс\\Бази даних\\Курсова\\Kursova_BD\\Kursova_BD\\wwwroot\\images\\11.img",
                             Name = "Качка",
                             Price = 40
                         },
@@ -152,7 +155,7 @@ namespace Kursova_BD.Migrations
                         {
                             Id = 5,
                             CategoryId = 1,
-                            ImagePath = "/images/12.jpg",
+                            ImagePath = "D:\\Унік\\3 курс\\Бази даних\\Курсова\\Kursova_BD\\Kursova_BD\\wwwroot\\images\\12.img",
                             Name = "Індичка",
                             Price = 30
                         },
@@ -160,7 +163,7 @@ namespace Kursova_BD.Migrations
                         {
                             Id = 6,
                             CategoryId = 2,
-                            ImagePath = "/images/13.jpg",
+                            ImagePath = "D:\\Унік\\3 курс\\Бази даних\\Курсова\\Kursova_BD\\Kursova_BD\\wwwroot\\images\\13.img",
                             Name = "Помідор",
                             Price = 15
                         },
@@ -168,7 +171,7 @@ namespace Kursova_BD.Migrations
                         {
                             Id = 7,
                             CategoryId = 2,
-                            ImagePath = "/images/14.jpg",
+                            ImagePath = "D:\\Унік\\3 курс\\Бази даних\\Курсова\\Kursova_BD\\Kursova_BD\\wwwroot\\images\\14.img",
                             Name = "Морква",
                             Price = 12
                         },
@@ -176,7 +179,7 @@ namespace Kursova_BD.Migrations
                         {
                             Id = 8,
                             CategoryId = 2,
-                            ImagePath = "/images/15.jpg",
+                            ImagePath = "D:\\Унік\\3 курс\\Бази даних\\Курсова\\Kursova_BD\\Kursova_BD\\wwwroot\\images\\15.img",
                             Name = "Цибуля",
                             Price = 8
                         },
@@ -184,7 +187,7 @@ namespace Kursova_BD.Migrations
                         {
                             Id = 9,
                             CategoryId = 2,
-                            ImagePath = "/images/16.jpg",
+                            ImagePath = "D:\\Унік\\3 курс\\Бази даних\\Курсова\\Kursova_BD\\Kursova_BD\\wwwroot\\images\\16.img",
                             Name = "Капуста",
                             Price = 20
                         },
@@ -192,7 +195,7 @@ namespace Kursova_BD.Migrations
                         {
                             Id = 10,
                             CategoryId = 2,
-                            ImagePath = "/images/17.jpg",
+                            ImagePath = "D:\\Унік\\3 курс\\Бази даних\\Курсова\\Kursova_BD\\Kursova_BD\\wwwroot\\images\\17.img",
                             Name = "Огірок",
                             Price = 18
                         },
@@ -200,7 +203,7 @@ namespace Kursova_BD.Migrations
                         {
                             Id = 11,
                             CategoryId = 3,
-                            ImagePath = "/images/18.jpg",
+                            ImagePath = "D:\\Унік\\3 курс\\Бази даних\\Курсова\\Kursova_BD\\Kursova_BD\\wwwroot\\images\\18.img",
                             Name = "Яблуко",
                             Price = 25
                         },
@@ -208,7 +211,7 @@ namespace Kursova_BD.Migrations
                         {
                             Id = 12,
                             CategoryId = 3,
-                            ImagePath = "/images/19.jpg",
+                            ImagePath = "D:\\Унік\\3 курс\\Бази даних\\Курсова\\Kursova_BD\\Kursova_BD\\wwwroot\\images\\19.img",
                             Name = "Банан",
                             Price = 15
                         },
@@ -216,7 +219,7 @@ namespace Kursova_BD.Migrations
                         {
                             Id = 13,
                             CategoryId = 3,
-                            ImagePath = "/images/20.jpg",
+                            ImagePath = "D:\\Унік\\3 курс\\Бази даних\\Курсова\\Kursova_BD\\Kursova_BD\\wwwroot\\images\\20.img",
                             Name = "Апельсин",
                             Price = 22
                         },
@@ -224,7 +227,7 @@ namespace Kursova_BD.Migrations
                         {
                             Id = 14,
                             CategoryId = 3,
-                            ImagePath = "/images/21.jpg",
+                            ImagePath = "D:\\Унік\\3 курс\\Бази даних\\Курсова\\Kursova_BD\\Kursova_BD\\wwwroot\\images\\21.img",
                             Name = "Манго",
                             Price = 30
                         },
@@ -232,7 +235,7 @@ namespace Kursova_BD.Migrations
                         {
                             Id = 15,
                             CategoryId = 3,
-                            ImagePath = "/images/22.jpg",
+                            ImagePath = "D:\\Унік\\3 курс\\Бази даних\\Курсова\\Kursova_BD\\Kursova_BD\\wwwroot\\images\\22.img",
                             Name = "Лимон",
                             Price = 18
                         },
@@ -240,7 +243,7 @@ namespace Kursova_BD.Migrations
                         {
                             Id = 16,
                             CategoryId = 4,
-                            ImagePath = "/images/23.jpg",
+                            ImagePath = "D:\\Унік\\3 курс\\Бази даних\\Курсова\\Kursova_BD\\Kursova_BD\\wwwroot\\images\\23.img",
                             Name = "Карась",
                             Price = 35
                         },
@@ -248,7 +251,7 @@ namespace Kursova_BD.Migrations
                         {
                             Id = 17,
                             CategoryId = 4,
-                            ImagePath = "/images/24.jpg",
+                            ImagePath = "D:\\Унік\\3 курс\\Бази даних\\Курсова\\Kursova_BD\\Kursova_BD\\wwwroot\\images\\24.img",
                             Name = "Короп",
                             Price = 40
                         },
@@ -256,7 +259,7 @@ namespace Kursova_BD.Migrations
                         {
                             Id = 18,
                             CategoryId = 4,
-                            ImagePath = "/images/25.jpg",
+                            ImagePath = "D:\\Унік\\3 курс\\Бази даних\\Курсова\\Kursova_BD\\Kursova_BD\\wwwroot\\images\\25.img",
                             Name = "Лосось",
                             Price = 45
                         },
@@ -264,7 +267,7 @@ namespace Kursova_BD.Migrations
                         {
                             Id = 19,
                             CategoryId = 4,
-                            ImagePath = "/images/26.jpg",
+                            ImagePath = "D:\\Унік\\3 курс\\Бази даних\\Курсова\\Kursova_BD\\Kursova_BD\\wwwroot\\images\\26.img",
                             Name = "Скумбрія",
                             Price = 38
                         },
@@ -272,7 +275,7 @@ namespace Kursova_BD.Migrations
                         {
                             Id = 20,
                             CategoryId = 4,
-                            ImagePath = "/images/27.jpg",
+                            ImagePath = "D:\\Унік\\3 курс\\Бази даних\\Курсова\\Kursova_BD\\Kursova_BD\\wwwroot\\images\\27.img",
                             Name = "Окунь",
                             Price = 32
                         },
@@ -280,7 +283,7 @@ namespace Kursova_BD.Migrations
                         {
                             Id = 21,
                             CategoryId = 5,
-                            ImagePath = "/images/28.jpg",
+                            ImagePath = "D:\\Унік\\3 курс\\Бази даних\\Курсова\\Kursova_BD\\Kursova_BD\\wwwroot\\images\\28.img",
                             Name = "Фета",
                             Price = 25
                         },
@@ -288,7 +291,7 @@ namespace Kursova_BD.Migrations
                         {
                             Id = 22,
                             CategoryId = 5,
-                            ImagePath = "/images/29.jpg",
+                            ImagePath = "D:\\Унік\\3 курс\\Бази даних\\Курсова\\Kursova_BD\\Kursova_BD\\wwwroot\\images\\29.img",
                             Name = "Домашній",
                             Price = 28
                         },
@@ -296,7 +299,7 @@ namespace Kursova_BD.Migrations
                         {
                             Id = 23,
                             CategoryId = 5,
-                            ImagePath = "/images/30.jpg",
+                            ImagePath = "D:\\Унік\\3 курс\\Бази даних\\Курсова\\Kursova_BD\\Kursova_BD\\wwwroot\\images\\30.img",
                             Name = "Брі",
                             Price = 30
                         },
@@ -304,7 +307,7 @@ namespace Kursova_BD.Migrations
                         {
                             Id = 24,
                             CategoryId = 5,
-                            ImagePath = "/images/31.jpg",
+                            ImagePath = "D:\\Унік\\3 курс\\Бази даних\\Курсова\\Kursova_BD\\Kursova_BD\\wwwroot\\images\\31.img",
                             Name = "Моцарелла",
                             Price = 22
                         },
@@ -312,7 +315,7 @@ namespace Kursova_BD.Migrations
                         {
                             Id = 25,
                             CategoryId = 5,
-                            ImagePath = "/images/32.jpg",
+                            ImagePath = "D:\\Унік\\3 курс\\Бази даних\\Курсова\\Kursova_BD\\Kursova_BD\\wwwroot\\images\\32.img",
                             Name = "Пармезан",
                             Price = 35
                         },
@@ -320,7 +323,7 @@ namespace Kursova_BD.Migrations
                         {
                             Id = 26,
                             CategoryId = 6,
-                            ImagePath = "/images/33.jpg",
+                            ImagePath = "D:\\Унік\\3 курс\\Бази даних\\Курсова\\Kursova_BD\\Kursova_BD\\wwwroot\\images\\33.img",
                             Name = "Багет",
                             Price = 15
                         },
@@ -328,7 +331,7 @@ namespace Kursova_BD.Migrations
                         {
                             Id = 27,
                             CategoryId = 6,
-                            ImagePath = "/images/34.jpg",
+                            ImagePath = "D:\\Унік\\3 курс\\Бази даних\\Курсова\\Kursova_BD\\Kursova_BD\\wwwroot\\images\\34.img",
                             Name = "Батон",
                             Price = 10
                         },
@@ -336,7 +339,7 @@ namespace Kursova_BD.Migrations
                         {
                             Id = 28,
                             CategoryId = 6,
-                            ImagePath = "/images/35.jpg",
+                            ImagePath = "D:\\Унік\\3 курс\\Бази даних\\Курсова\\Kursova_BD\\Kursova_BD\\wwwroot\\images\\35.img",
                             Name = "Український",
                             Price = 20
                         },
@@ -344,15 +347,15 @@ namespace Kursova_BD.Migrations
                         {
                             Id = 29,
                             CategoryId = 6,
-                            ImagePath = "/images/36.jpg",
-                            Name = "Пампушки",
+                            ImagePath = "D:\\Унік\\3 курс\\Бази даних\\Курсова\\Kursova_BD\\Kursova_BD\\wwwroot\\images\\36.img",
+                            Name = "Помпушки",
                             Price = 18
                         },
                         new
                         {
                             Id = 30,
                             CategoryId = 6,
-                            ImagePath = "/images/37.jpg",
+                            ImagePath = "D:\\Унік\\3 курс\\Бази даних\\Курсова\\Kursova_BD\\Kursova_BD\\wwwroot\\images\\37.img",
                             Name = "Лаваш",
                             Price = 12
                         },
@@ -360,15 +363,15 @@ namespace Kursova_BD.Migrations
                         {
                             Id = 31,
                             CategoryId = 7,
-                            ImagePath = "/images/38.jpg",
-                            Name = "Горілка",
+                            ImagePath = "D:\\Унік\\3 курс\\Бази даних\\Курсова\\Kursova_BD\\Kursova_BD\\wwwroot\\images\\38.img",
+                            Name = "Кава",
                             Price = 20
                         },
                         new
                         {
                             Id = 32,
                             CategoryId = 7,
-                            ImagePath = "/images/39.jpg",
+                            ImagePath = "D:\\Унік\\3 курс\\Бази даних\\Курсова\\Kursova_BD\\Kursova_BD\\wwwroot\\images\\39.img",
                             Name = "Червоне вино",
                             Price = 35
                         },
@@ -376,7 +379,7 @@ namespace Kursova_BD.Migrations
                         {
                             Id = 33,
                             CategoryId = 7,
-                            ImagePath = "/images/40.jpg",
+                            ImagePath = "D:\\Унік\\3 курс\\Бази даних\\Курсова\\Kursova_BD\\Kursova_BD\\wwwroot\\images\\40.img",
                             Name = "Біле вино",
                             Price = 40
                         },
@@ -384,7 +387,7 @@ namespace Kursova_BD.Migrations
                         {
                             Id = 34,
                             CategoryId = 7,
-                            ImagePath = "/images/41.jpg",
+                            ImagePath = "D:\\Унік\\3 курс\\Бази даних\\Курсова\\Kursova_BD\\Kursova_BD\\wwwroot\\images\\41.img",
                             Name = "Пиво",
                             Price = 25
                         },
@@ -392,7 +395,7 @@ namespace Kursova_BD.Migrations
                         {
                             Id = 35,
                             CategoryId = 7,
-                            ImagePath = "/images/42.jpg",
+                            ImagePath = "D:\\Унік\\3 курс\\Бази даних\\Курсова\\Kursova_BD\\Kursova_BD\\wwwroot\\images\\42.img",
                             Name = "Сік",
                             Price = 18
                         });
@@ -418,7 +421,7 @@ namespace Kursova_BD.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Orders", (string)null);
+                    b.ToTable("Orders");
                 });
 
             modelBuilder.Entity("Kursova_BD.Models.Tables.OrderItem", b =>
@@ -447,7 +450,32 @@ namespace Kursova_BD.Migrations
 
                     b.HasIndex("OrderId");
 
-                    b.ToTable("OrderItems", (string)null);
+                    b.ToTable("OrderItems");
+                });
+
+            modelBuilder.Entity("Kursova_BD.Models.Tables.Storage", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("ItemId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("UpdateTime")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ItemId")
+                        .IsUnique();
+
+                    b.ToTable("Storages");
                 });
 
             modelBuilder.Entity("Kursova_BD.Models.Tables.Item", b =>
@@ -476,9 +504,25 @@ namespace Kursova_BD.Migrations
                     b.Navigation("Item");
                 });
 
+            modelBuilder.Entity("Kursova_BD.Models.Tables.Storage", b =>
+                {
+                    b.HasOne("Kursova_BD.Models.Tables.Item", "Item")
+                        .WithOne("Storage")
+                        .HasForeignKey("Kursova_BD.Models.Tables.Storage", "ItemId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Item");
+                });
+
             modelBuilder.Entity("Kursova_BD.Models.Tables.Category", b =>
                 {
                     b.Navigation("Items");
+                });
+
+            modelBuilder.Entity("Kursova_BD.Models.Tables.Item", b =>
+                {
+                    b.Navigation("Storage");
                 });
 
             modelBuilder.Entity("Kursova_BD.Models.Tables.Order", b =>

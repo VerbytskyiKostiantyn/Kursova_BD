@@ -1,0 +1,100 @@
+﻿@using Kursova_BD.Models.Tables
+@model Order
+
+@if (Model != null)
+{
+    <div class="container mt-4">
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                <h4 class="mb-0">Ваше замовлення №@Model.Id</h4>
+            </div>
+
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Назва товару</th>
+                                <th class="text-center">Кількість</th>
+                                <th class="text-end">Ціна за одиницю</th>
+                                <th class="text-end">Загальна вартість</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.Items)
+                            {
+                                <tr>
+                                    <td class="align-middle">
+                                        <div class="card-img-wrapper" style="background-color: #f8f9fa; display: flex; align-items: center; justify-content: center;">
+                                            <img src="@item.Item.ImagePath" alt="@item.Item.Name" style="width: 70px; height: 50px;" class="mx-2 card-img-top" />
+                                            @item.Item.Name
+                                        </div>
+                                    </td>
+                                    <td class="text-center align-middle">
+                                        <div class="d-flex justify-content-center align-items-center">
+                                            <button class="btn btn-sm btn-outline-secondary me-2"
+                                                    onclick="updateQuantityMinus(@item.Id, -1, @item.OrderQuantity)">
+                                                -
+                                            </button>
+                                            <span>@item.OrderQuantity</span>
+                                            <button class="btn btn-sm btn-outline-secondary ms-2"
+                                                    onclick="updateQuantityPlus(@item.Id, 1)">
+                                                +
+                                            </button>
+                                        </div>
+                                    </td>
+                                    <td class="text-end align-middle">@item.Item.Price.ToString("C")</td>
+                                    <td class="text-end align-middle">@item.TotalPrice.ToString("C")</td>
+                                    <td class="align-middle">
+                                        <button class="btn btn-sm btn-outline-danger"
+                                                onclick="removeItem(@item.Id)">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                                                <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z" />
+                                                <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z" />
+                                            </svg>
+                                        </button>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="card mt-3">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h5 class="mb-0">Загальна сума замовлення:</h5>
+                            <h4 class="mb-0 text-primary">@Model.TotalOrderPrice грн</h4>
+                        </div>
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-3">
+                            <a href="@Url.Action("Index", "Home")" class="btn btn-outline-secondary">
+                                Продовжити покупки
+                            </a>
+                            <button class="btn btn-primary" onclick="placeOrder(@Model.Id)">
+                                Оформити замовлення
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <div class="container">
+        <div class="mt-5">
+            <h1 class="text-center mb-4">Ваш кошик порожній!</h1>
+        </div>
+    </div>
+    <div class="text-center">
+        <a href="@Url.Action("Index", "Home")" class="btn btn-primary mt-3">
+            Перейти до покупок
+        </a>
+    </div>
+}
+
+
+<link rel="stylesheet" href="~/css/cart.css" asp-append-version="true" />
+<script src="~/js/cart.js" asp-append-version="true"></script>

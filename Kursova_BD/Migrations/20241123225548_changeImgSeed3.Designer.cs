@@ -4,6 +4,7 @@ using Kursova_BD.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Kursova_BD.Migrations
 {
     [DbContext(typeof(ShopDbContext))]
-    partial class ShopDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241123225548_changeImgSeed3")]
+    partial class changeImgSeed3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -40,7 +43,7 @@ namespace Kursova_BD.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Categories", (string)null);
+                    b.ToTable("Categories");
 
                     b.HasData(
                         new
@@ -113,7 +116,7 @@ namespace Kursova_BD.Migrations
 
                     b.HasIndex("CategoryId");
 
-                    b.ToTable("Items", (string)null);
+                    b.ToTable("Items");
 
                     b.HasData(
                         new
@@ -345,7 +348,7 @@ namespace Kursova_BD.Migrations
                             Id = 29,
                             CategoryId = 6,
                             ImagePath = "/images/36.jpg",
-                            Name = "Пампушки",
+                            Name = "Помпушки",
                             Price = 18
                         },
                         new
@@ -361,7 +364,7 @@ namespace Kursova_BD.Migrations
                             Id = 31,
                             CategoryId = 7,
                             ImagePath = "/images/38.jpg",
-                            Name = "Горілка",
+                            Name = "Кава",
                             Price = 20
                         },
                         new
@@ -418,7 +421,7 @@ namespace Kursova_BD.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Orders", (string)null);
+                    b.ToTable("Orders");
                 });
 
             modelBuilder.Entity("Kursova_BD.Models.Tables.OrderItem", b =>
@@ -447,7 +450,279 @@ namespace Kursova_BD.Migrations
 
                     b.HasIndex("OrderId");
 
-                    b.ToTable("OrderItems", (string)null);
+                    b.ToTable("OrderItems");
+                });
+
+            modelBuilder.Entity("Kursova_BD.Models.Tables.Storage", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("ItemId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("UpdateTime")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ItemId")
+                        .IsUnique();
+
+                    b.ToTable("Storages");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            ItemId = 1,
+                            Quantity = 80,
+                            UpdateTime = new DateTime(2024, 11, 24, 0, 55, 47, 898, DateTimeKind.Local).AddTicks(3769)
+                        },
+                        new
+                        {
+                            Id = 2,
+                            ItemId = 2,
+                            Quantity = 75,
+                            UpdateTime = new DateTime(2024, 11, 24, 0, 55, 47, 898, DateTimeKind.Local).AddTicks(3769)
+                        },
+                        new
+                        {
+                            Id = 3,
+                            ItemId = 3,
+                            Quantity = 90,
+                            UpdateTime = new DateTime(2024, 11, 24, 0, 55, 47, 898, DateTimeKind.Local).AddTicks(3769)
+                        },
+                        new
+                        {
+                            Id = 4,
+                            ItemId = 4,
+                            Quantity = 85,
+                            UpdateTime = new DateTime(2024, 11, 24, 0, 55, 47, 898, DateTimeKind.Local).AddTicks(3769)
+                        },
+                        new
+                        {
+                            Id = 5,
+                            ItemId = 5,
+                            Quantity = 95,
+                            UpdateTime = new DateTime(2024, 11, 24, 0, 55, 47, 898, DateTimeKind.Local).AddTicks(3769)
+                        },
+                        new
+                        {
+                            Id = 6,
+                            ItemId = 6,
+                            Quantity = 60,
+                            UpdateTime = new DateTime(2024, 11, 24, 0, 55, 47, 898, DateTimeKind.Local).AddTicks(3769)
+                        },
+                        new
+                        {
+                            Id = 7,
+                            ItemId = 7,
+                            Quantity = 70,
+                            UpdateTime = new DateTime(2024, 11, 24, 0, 55, 47, 898, DateTimeKind.Local).AddTicks(3769)
+                        },
+                        new
+                        {
+                            Id = 8,
+                            ItemId = 8,
+                            Quantity = 65,
+                            UpdateTime = new DateTime(2024, 11, 24, 0, 55, 47, 898, DateTimeKind.Local).AddTicks(3769)
+                        },
+                        new
+                        {
+                            Id = 9,
+                            ItemId = 9,
+                            Quantity = 75,
+                            UpdateTime = new DateTime(2024, 11, 24, 0, 55, 47, 898, DateTimeKind.Local).AddTicks(3769)
+                        },
+                        new
+                        {
+                            Id = 10,
+                            ItemId = 10,
+                            Quantity = 80,
+                            UpdateTime = new DateTime(2024, 11, 24, 0, 55, 47, 898, DateTimeKind.Local).AddTicks(3769)
+                        },
+                        new
+                        {
+                            Id = 11,
+                            ItemId = 11,
+                            Quantity = 55,
+                            UpdateTime = new DateTime(2024, 11, 24, 0, 55, 47, 898, DateTimeKind.Local).AddTicks(3769)
+                        },
+                        new
+                        {
+                            Id = 12,
+                            ItemId = 12,
+                            Quantity = 70,
+                            UpdateTime = new DateTime(2024, 11, 24, 0, 55, 47, 898, DateTimeKind.Local).AddTicks(3769)
+                        },
+                        new
+                        {
+                            Id = 13,
+                            ItemId = 13,
+                            Quantity = 85,
+                            UpdateTime = new DateTime(2024, 11, 24, 0, 55, 47, 898, DateTimeKind.Local).AddTicks(3769)
+                        },
+                        new
+                        {
+                            Id = 14,
+                            ItemId = 14,
+                            Quantity = 90,
+                            UpdateTime = new DateTime(2024, 11, 24, 0, 55, 47, 898, DateTimeKind.Local).AddTicks(3769)
+                        },
+                        new
+                        {
+                            Id = 15,
+                            ItemId = 15,
+                            Quantity = 95,
+                            UpdateTime = new DateTime(2024, 11, 24, 0, 55, 47, 898, DateTimeKind.Local).AddTicks(3769)
+                        },
+                        new
+                        {
+                            Id = 16,
+                            ItemId = 16,
+                            Quantity = 75,
+                            UpdateTime = new DateTime(2024, 11, 24, 0, 55, 47, 898, DateTimeKind.Local).AddTicks(3769)
+                        },
+                        new
+                        {
+                            Id = 17,
+                            ItemId = 17,
+                            Quantity = 80,
+                            UpdateTime = new DateTime(2024, 11, 24, 0, 55, 47, 898, DateTimeKind.Local).AddTicks(3769)
+                        },
+                        new
+                        {
+                            Id = 18,
+                            ItemId = 18,
+                            Quantity = 85,
+                            UpdateTime = new DateTime(2024, 11, 24, 0, 55, 47, 898, DateTimeKind.Local).AddTicks(3769)
+                        },
+                        new
+                        {
+                            Id = 19,
+                            ItemId = 19,
+                            Quantity = 90,
+                            UpdateTime = new DateTime(2024, 11, 24, 0, 55, 47, 898, DateTimeKind.Local).AddTicks(3769)
+                        },
+                        new
+                        {
+                            Id = 20,
+                            ItemId = 20,
+                            Quantity = 95,
+                            UpdateTime = new DateTime(2024, 11, 24, 0, 55, 47, 898, DateTimeKind.Local).AddTicks(3769)
+                        },
+                        new
+                        {
+                            Id = 21,
+                            ItemId = 21,
+                            Quantity = 60,
+                            UpdateTime = new DateTime(2024, 11, 24, 0, 55, 47, 898, DateTimeKind.Local).AddTicks(3769)
+                        },
+                        new
+                        {
+                            Id = 22,
+                            ItemId = 22,
+                            Quantity = 70,
+                            UpdateTime = new DateTime(2024, 11, 24, 0, 55, 47, 898, DateTimeKind.Local).AddTicks(3769)
+                        },
+                        new
+                        {
+                            Id = 23,
+                            ItemId = 23,
+                            Quantity = 75,
+                            UpdateTime = new DateTime(2024, 11, 24, 0, 55, 47, 898, DateTimeKind.Local).AddTicks(3769)
+                        },
+                        new
+                        {
+                            Id = 24,
+                            ItemId = 24,
+                            Quantity = 80,
+                            UpdateTime = new DateTime(2024, 11, 24, 0, 55, 47, 898, DateTimeKind.Local).AddTicks(3769)
+                        },
+                        new
+                        {
+                            Id = 25,
+                            ItemId = 25,
+                            Quantity = 85,
+                            UpdateTime = new DateTime(2024, 11, 24, 0, 55, 47, 898, DateTimeKind.Local).AddTicks(3769)
+                        },
+                        new
+                        {
+                            Id = 26,
+                            ItemId = 26,
+                            Quantity = 80,
+                            UpdateTime = new DateTime(2024, 11, 24, 0, 55, 47, 898, DateTimeKind.Local).AddTicks(3769)
+                        },
+                        new
+                        {
+                            Id = 27,
+                            ItemId = 27,
+                            Quantity = 85,
+                            UpdateTime = new DateTime(2024, 11, 24, 0, 55, 47, 898, DateTimeKind.Local).AddTicks(3769)
+                        },
+                        new
+                        {
+                            Id = 28,
+                            ItemId = 28,
+                            Quantity = 90,
+                            UpdateTime = new DateTime(2024, 11, 24, 0, 55, 47, 898, DateTimeKind.Local).AddTicks(3769)
+                        },
+                        new
+                        {
+                            Id = 29,
+                            ItemId = 29,
+                            Quantity = 95,
+                            UpdateTime = new DateTime(2024, 11, 24, 0, 55, 47, 898, DateTimeKind.Local).AddTicks(3769)
+                        },
+                        new
+                        {
+                            Id = 30,
+                            ItemId = 30,
+                            Quantity = 100,
+                            UpdateTime = new DateTime(2024, 11, 24, 0, 55, 47, 898, DateTimeKind.Local).AddTicks(3769)
+                        },
+                        new
+                        {
+                            Id = 31,
+                            ItemId = 31,
+                            Quantity = 100,
+                            UpdateTime = new DateTime(2024, 11, 24, 0, 55, 47, 898, DateTimeKind.Local).AddTicks(3769)
+                        },
+                        new
+                        {
+                            Id = 32,
+                            ItemId = 32,
+                            Quantity = 95,
+                            UpdateTime = new DateTime(2024, 11, 24, 0, 55, 47, 898, DateTimeKind.Local).AddTicks(3769)
+                        },
+                        new
+                        {
+                            Id = 33,
+                            ItemId = 33,
+                            Quantity = 90,
+                            UpdateTime = new DateTime(2024, 11, 24, 0, 55, 47, 898, DateTimeKind.Local).AddTicks(3769)
+                        },
+                        new
+                        {
+                            Id = 34,
+                            ItemId = 34,
+                            Quantity = 85,
+                            UpdateTime = new DateTime(2024, 11, 24, 0, 55, 47, 898, DateTimeKind.Local).AddTicks(3769)
+                        },
+                        new
+                        {
+                            Id = 35,
+                            ItemId = 35,
+                            Quantity = 80,
+                            UpdateTime = new DateTime(2024, 11, 24, 0, 55, 47, 898, DateTimeKind.Local).AddTicks(3769)
+                        });
                 });
 
             modelBuilder.Entity("Kursova_BD.Models.Tables.Item", b =>
@@ -476,9 +751,25 @@ namespace Kursova_BD.Migrations
                     b.Navigation("Item");
                 });
 
+            modelBuilder.Entity("Kursova_BD.Models.Tables.Storage", b =>
+                {
+                    b.HasOne("Kursova_BD.Models.Tables.Item", "Item")
+                        .WithOne("Storage")
+                        .HasForeignKey("Kursova_BD.Models.Tables.Storage", "ItemId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Item");
+                });
+
             modelBuilder.Entity("Kursova_BD.Models.Tables.Category", b =>
                 {
                     b.Navigation("Items");
+                });
+
+            modelBuilder.Entity("Kursova_BD.Models.Tables.Item", b =>
+                {
+                    b.Navigation("Storage");
                 });
 
             modelBuilder.Entity("Kursova_BD.Models.Tables.Order", b =>

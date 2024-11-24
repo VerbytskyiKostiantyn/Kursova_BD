@@ -1,0 +1,100 @@
+﻿@using Kursova_BD.Models.ViewModels
+@model CreateEditVM
+
+<div class="container mt-5">
+    <div class="card">
+        <div class="card-header bg-primary text-white">
+            <h4 class="mb-0">Редагування товару</h4>
+        </div>
+
+        <div class="card-body">
+            <form asp-controller="Admin" asp-action="Edit" method="post" enctype="multipart/form-data">
+                <input type="hidden" asp-for="@Model.Item.Id" />
+                <input type="hidden" asp-for="@Model.Item.ImagePath" />
+
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="mb-3">
+                            <label asp-for="@Model.Item.Name" class="form-label">Назва товару</label>
+                            <input asp-for="@Model.Item.Name" class="form-control" required>
+                            <span asp-validation-for="@Model.Item.Name" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="@Model.Item.Price" class="form-label">Ціна</label>
+                            <div class="input-group">
+                                <input asp-for="@Model.Item.Price" class="form-control" type="number" min="0" required>
+                                <span class="input-group-text">грн</span>
+                            </div>
+                            <span asp-validation-for="@Model.Item.Price" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="@Model.Item.CategoryId" class="form-label">Категорія</label>
+                            <select asp-for="@Model.Item.CategoryId" class="form-select" required>
+                                <option value="">Виберіть категорію...</option>
+                                @foreach (var category in @Model.Categories)
+                                {
+                                    <option value="@category.Id">@category.Name</option>
+                                }
+                            </select>
+                            <span asp-validation-for="@Model.Item.CategoryId" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Зображення товару</label>
+                            <input type="file" name="imageFile" class="form-control" accept="image/*">
+                            <small class="text-muted">Залиште порожнім, щоб зберегти поточне зображення</small>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="card">
+                            <div class="card-header">
+                                Поточне зображення
+                            </div>
+                            <div class="card-body text-center">
+                                <img src="@Model.Item.ImagePath" alt="@Model.Item.Name"
+                                     class="img-fluid rounded"
+                                     style="max-height: 200px; object-fit: contain;" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-3">
+                    <a asp-controller="Admin" asp-action="Index" class="btn btn-outline-secondary">
+                        Скасувати
+                    </a>
+                    <button type="submit" class="btn btn-primary">
+                        Зберегти зміни
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+
+    <script>
+        document.querySelector('input[type="file"]').addEventListener('change', function (e) {
+            if (this.files && this.files[0]) {
+                const maxSize = 5 * 1024 * 1024;
+                if (this.files[0].size > maxSize) {
+                    alert('Файл занадто великий. Максимальний розмір: 5MB');
+                    this.value = '';
+                    return;
+                }
+
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    document.querySelector('.card-body img').src = e.target.result;
+                }
+                reader.readAsDataURL(this.files[0]);
+            }
+        });
+    </script>
+}

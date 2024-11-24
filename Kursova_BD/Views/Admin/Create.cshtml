@@ -1,0 +1,55 @@
+﻿@using Kursova_BD.Models.ViewModels
+@model CreateEditVM
+
+<div class="container mt-5">
+    <div class="card">
+        <div class="card-header bg-primary text-white">
+            <h4 class="mb-0">Додати новий товар</h4>
+        </div>
+
+        <div class="card-body">
+            <form asp-controller="Admin" asp-action="Create" method="post" enctype="multipart/form-data">
+                <div class="mb-3">
+                    <label asp-for="@Model.Item.Name" class="form-label">Назва товару</label>
+                    <input asp-for="@Model.Item.Name" class="form-control" required>
+                    <span asp-validation-for="@Model.Item.Name" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="@Model.Item.Price" class="form-label">Ціна</label>
+                    <div class="input-group">
+                        <input asp-for="@Model.Item.Price" class="form-control" type="number" min="0" required>
+                        <span class="input-group-text">грн</span>
+                    </div>
+                    <span asp-validation-for="@Model.Item.Price" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="@Model.Item.CategoryId" class="form-label">Категорія</label>
+                    <select asp-for="@Model.Item.CategoryId" class="form-select" required>
+                        <option value="">Виберіть категорію...</option>
+                        @foreach (var category in @Model.Categories)
+                        {
+                            <option value="@category.Id">@category.Name</option>
+                        }
+                    </select>
+                    <span asp-validation-for="@Model.Item.CategoryId" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Зображення товару</label>
+                    <input type="file" name="file" class="form-control" accept="image/jpeg" required>
+                </div>
+
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    <a asp-controller="Admin" asp-action="Index" class="btn btn-outline-secondary">
+                        Скасувати
+                    </a>
+                    <button type="submit" class="btn btn-primary">
+                        Додати товар
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

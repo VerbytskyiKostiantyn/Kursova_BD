@@ -1,0 +1,117 @@
+﻿<link href="https://unpkg.com/gridjs/dist/theme/mermaid.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="~/css/index.css" asp-append-version="true" />
+<link rel="stylesheet" href="~/css/cart.css" asp-append-version="true" />
+
+<div class="">
+    <div class="row">
+        <span class="col-10"></span>
+        <a asp-controller="Admin" asp-action="Create" class="col-2 btn btn-primary">Додати продукт</a>
+    </div>
+    <div id="wrapper"></div>
+</div>
+
+<script src="https://unpkg.com/gridjs/dist/gridjs.umd.js"></script>
+<script src="https://unpkg.com/gridjs/l10n/dist/l10n.umd.js"></script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var link = document.querySelector('.remove-item-link');
+        link.setAttribute('href', 'javascript:void(0)');
+    });
+
+    const grid = new gridjs.Grid({
+        columns: ["Name", "Email", "Phone Number"],
+        pagination: {
+            limit: 7
+        },
+        search: true,
+        resizable: true,
+        sort: true,
+        language: { search: { placeholder: "Пошук..." }, sort: { sortAsc: "Сортування за зростанням", sortDesc: "Сортування за зменшенням" }, pagination: { previous: "Назад", next: "Далі", navigate: function (e, r) { return "Сторінка " + e + " з " + r }, page: function (e) { return "Сторінка " + e }, showing: "Відображення з", of: "з", to: "до", results: "записів" }, loading: "Завантаження...", noRecordsFound: "Не знайдено відповідних записів", error: "Помилка при завантаженні даних" },
+        columns: [
+            {
+                name: "Id",
+                hidden: true
+            },
+            {
+                name: "Назва",
+                sort: {
+                    enabled: true,
+                    default: 'asc'
+                },
+                width: 200
+            },
+            { name: "Фото" },
+            { name: "Категорія" },
+            { name: "Ціна" },
+            {
+                name: 'Змінити',
+                formatter: (_, row) => gridjs.html(`<a style="display: flex; justify-content: center;" href="/Admin/Edit?id=${row.cells[0].data}" class="">
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
+          <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+          <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0"/>
+        </svg>
+        </a>`)
+            },
+            {
+                name: 'Видалити',
+                formatter: (_, row) => gridjs.html(`<a style="display: flex; justify-content: center;" class="remove-item-link" onclick="removeItem(${row.cells[0].data})">
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+          <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/>
+          <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z"/>
+        </svg>
+        </a>`)
+            }
+        ],
+
+        server: {
+            url: '/getAllItems',
+            then: data => data.map(card => [card.Id, card.Name,
+            gridjs.html(`<div class="card-img-wrapper" style="background-color: #f8f9fa; display: flex; align-items: center; justify-content: center;">
+        <img src="${card.ImagePath}" style="width: 80px; height: 60px;" class="mx-2 card-img-top" /></div>`),
+                card.Category.Name, card.Price])
+        },
+        theme: 'mermaid'
+    });
+    grid.render(document.getElementById("wrapper"));
+
+</script>
+<script>
+    function removeItem(itemId) {
+        Swal.fire({
+            title: `Ви впевнені?`,
+            text: "Товар буде видалений",
+            showCancelButton: true,
+            icon: "warning",
+            confirmButtonText: "Так, видалити",
+            confirmButtonColor: "#d33",
+            cancelButtonColor: "#3085d6",
+            cancelButtonText: "Скасувати",
+            showLoaderOnConfirm: true,
+            preConfirm: async (quantity) => {
+                try {
+                    const response = await fetch(`/deleteItem/${itemId}`, {
+                        method: 'POST'
+                    });
+                    return true;
+                } catch (error) {
+                    Swal.showValidationMessage(`Помилка: ${error}`);
+                }
+            },
+            allowOutsideClick: () => !Swal.isLoading()
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Успішно видалено!',
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+                setTimeout(function () {
+                    window.location.href = '/Admin/Index';
+                }, 1500);
+
+            }
+        });
+    }
+</script>
